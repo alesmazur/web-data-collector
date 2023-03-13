@@ -1,5 +1,5 @@
-import logo from "../logo.svg";
-import javalogo from "../java.svg";
+import logo from "../assets/logo.svg";
+import javalogo from "../assets/java.svg";
 
 export default function Logo() {
   return (

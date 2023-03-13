@@ -3,15 +3,16 @@ import React, { useState, useEffect } from "react";
 export default function Getrequest() {
   // function
   const [data, setData] = useState([]);
-  const fetchData = async () => {
-    const response = await fetch("link from Alexey");
+  const fetchData = async (url) => {
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error("Data cannot be fetched!");
+      throw new Error(
+        ` Error from url: ${url}. Erorr status is ${response.status}   `
+      );
     } else {
-      return response.json();
+      return await response.json();
     }
   };
-
   useEffect(() => {
     fetchData()
       .then((response) => {
@@ -21,10 +22,17 @@ export default function Getrequest() {
         console.log(err.message);
       });
   }, []);
+
+  const onClickHandler = () => {
+    console.log("Click");
+  };
   // rendering to DOM
   return (
     <div>
-      <div className="get-data py-5 d-flex align-items-center" id="get-data">
+      <div
+        className="get-data py-2 d-flex flex-column align-items-center"
+        id="get-data"
+      >
         <p>
           Here we might to get data from server.
           <br />
@@ -33,7 +41,12 @@ export default function Getrequest() {
         <textarea cols="24" rows="1" className="mx-2">
           waiting for response ...
         </textarea>
-        <button className="btn btn-outline-info mt-2 px-5 ">Get</button>
+        <button
+          onClick={onClickHandler}
+          className="btn btn-outline-info mt-2 px-5 "
+        >
+          Get
+        </button>
       </div>
     </div>
   );

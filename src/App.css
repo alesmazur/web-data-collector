@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: #212121;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,19 +8,45 @@
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 1rem;
+
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
-.App-header {
+.App-header,
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 1rem;
+  background-color: #010b13;
+}
+
+.footer {
+  justify-content: center;
+  background-color: #171717;
+  font-size: 1rem;
+}
+
+main {
+  font-size: 1rem;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+.container {
+  max-width: 1200px !important;
+}
+
+.header-inner--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .App-logo {
@@ -38,6 +64,11 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 600px;
+}
+
+.brand-logo {
+  max-width: 15rem;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
