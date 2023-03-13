@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function Getrequest() {
   // function
-  const [data, setData] = useState([]);
-  const fetchData = async () => {
-    const response = await fetch("link from Alexey");
-    if (!response.ok) {
-      throw new Error("Data cannot be fetched!");
-    } else {
-      return response.json();
-    }
-  };
-
-  useEffect(() => {
-    fetchData()
+  const url = "https://api.adviceslip.com/advice";
+  const [data, setData] = useState("");
+  const getData = () => {
+    axios
+      .get(url)
       .then((response) => {
-        setData(response);
+        console.log(response.data.slip.advice);
+        setData(response.data.slip.advice);
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
+      .catch((error) => console.log(error));
+  };
   // rendering to DOM
   return (
     <div>
-      <div className="get-data py-5 d-flex align-items-center" id="get-data">
+      <div
+        className="get-data d-flex flex-column py-5 align-items-center"
+        id="get-data"
+      >
         <p>
           Here we might to get data from server.
           <br />
           Push the Get button to check this out!
         </p>
-        <textarea cols="24" rows="1" className="mx-2">
-          waiting for response ...
-        </textarea>
-        <button className="btn btn-outline-info mt-2 px-5 ">Get</button>
+
+        <div className="mx-2 ">
+          <div>
+            {data ? (
+              <p>{data}</p>
+            ) : (
+              <p className="small">here response will appear...</p>
+            )}
+          </div>
+        </div>
+        <button className="btn btn-outline-info mt-2 px-5 " onClick={getData}>
+          Get
+        </button>
       </div>
     </div>
   );
